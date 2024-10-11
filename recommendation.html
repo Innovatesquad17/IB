@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="form-container">
+        <form action="/recommend" method="POST">
+            <h2>Enter Your Details</h2>
+            <input type="text" name="skills" placeholder="Skills" required>
+            <input type="text" name="location" placeholder="Preferred Location" required>
+            <button type="submit">Get Recommendations</button>
+        </form>
+
+        <div>
+            {% if internships %}
+                <h3>Recommended Internships</h3>
+                <ul>
+                {% for internship in internships %}
+                    <li>{{ internship['Profile'] }} at {{ internship['Company'] }} - {{ internship['Location'] }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
